@@ -1,0 +1,32 @@
+{{ form_start(form, {'attr': {'class': 'form-group'}}) }}
+   
+   
+    <div class="mb-3">
+        {{ form_label(form.username, 'Username', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.username, {'attr': {'class': 'form-control p_input'}}) }}
+        {{ form_errors(form.username) }}
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.email, 'Email Address', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control p_input'}}) }}
+        {{ form_errors(form.email) }}
+    </div>
+
+   
+
+  {% if app.request.attributes.get('_route') == 'app_user_edit' %}
+        <div class="mb-3" hidden>
+            {{ form_label(form.password, 'Password', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.password, {'attr': {'class': 'form-control p_input'}}) }}
+            {{ form_errors(form.password) }}
+        </div>
+    {% else %}
+ <div class="mb-3">
+            {{ form_label(form.password, 'Password', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.password, {'attr': {'class': 'form-control p_input'}}) }}
+            {{ form_errors(form.password) }}
+        </div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

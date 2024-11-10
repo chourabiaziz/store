@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-0">
+            <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                <div class="card col-lg-4 mx-auto">
+                    <div class="card-body px-5 py-5">
+                        <h3 class="card-title text-left mb-3">Register</h3>
+                        {{ form_start(registrationForm) }}
+                        <div class="form-group m-3">
+                            <label for="inputEmail">Username <span style="color: red;">*</span> </label>
+                            
+                            {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control'}}) }}
+
+
+                        </div>
+                        <div class="form-group m-3">
+                            <label for="inputEmail">Email <span style="color: red;">*</span> </label>
+                            
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+
+
+                        </div>
+                        <div class="form-group m-3">
+                            <label for="inputEmail">Password <span style="color: red;">*</span> </label>
+                            
+                            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+
+
+                        </div>
+ 
+                       
+                        
+                      Accept terms and conditions   {{ form_widget(registrationForm.agreeTerms) }}
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-block enter-btn m-3">Register</button>
+                        </div>
+                        
+                        <p class="sign-up">already have an Account?<a href="/login"> Sign in</a></p>
+
+                        {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+            </div>
+            <!-- row ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+</div>                 
+
+
+{% endblock %}
