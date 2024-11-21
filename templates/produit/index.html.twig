@@ -1,0 +1,59 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hello ProduitController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+   
+
+
+        <table border="1">
+            <thead>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Crée en </th>
+                <th colspan="2"> Actions  </th>
+            </thead>
+            <tbody> {% for produit in produits %}
+                <tr>
+                   
+        
+
+                    <td>{{produit.id}}</td>
+                    <td>{{produit.titre}}</td>
+                    <td>{{produit.prix}}</td>
+                    <td>{{produit.createdat  |date() }}</td>
+                    <td> <a href="/produit/show/{{produit.id}}">Consulter</a> </td>
+                    <td> <a href="/produit/edit/{{produit.id}}">Modifier</a> </td>
+            
+            
+            
+             
+                </tr>   {% endfor %}
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+
+  
+
+ 
+
+
+        <a href="/produit/add"  class="btn btn-primary" >Ajouter un Produit</a>
+
+
+</div>
+{% endblock %}

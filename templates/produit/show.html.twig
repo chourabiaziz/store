@@ -1,0 +1,31 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hello ProduitController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+   
+
+
+       <ul>
+
+                    <li>id :{{produit.id}}</li>
+                    <li>titre : {{produit.titre}}</li>
+                    <li>prix :{{produit.prix}}</li>
+                    <li>date :{{produit.createdat  |date() }}</li>
+                     <li> <a href="/produit/edit/{{produit.id}}" class="btn btn-warning">Modifier</a> </li>
+                     <li> <a href="/produit/delete/{{produit.id}}"    class="btn btn-danger" >Supprimer</a> </li>
+            
+        </ul>    
+     
+
+
+
+ 
+</div>
+{% endblock %}
