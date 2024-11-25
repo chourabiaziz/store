@@ -14,13 +14,84 @@
 
 
     
-        {{ form_start(form) }}
+    {{ form_start(form, {'attr': { 'novalidate': 'novalidate'}}) }}
 
+    <div class="card">
+    <div class="card-header">
+        <h4>Ajouter un produit</h4>
+    </div>
+    <div class="card-body">
+        {{ form_start(form, {'attr': { 'novalidate': 'novalidate'}}) }}
+        
+        <div class="form-group">
+            {{ form_label(form.titre) }}
+            {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+            {% if form.titre.vars.errors|length > 0 %}
+                <div class="text-danger">
+                    {% for error in form.titre.vars.errors %}
+                        <p>{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            {% if form.description.vars.errors|length > 0 %}
+                <div class="text-danger">
+                    {% for error in form.description.vars.errors %}
+                        <p>{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
 
-            {{ form_widget(form) }}
- 
-                    <button type="submit"  class="btn btn-success" > Ajouter produit </button>
+        <div class="form-group">
+            {{ form_label(form.prix) }}
+            {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+            {% if form.prix.vars.errors|length > 0 %}
+                <div class="text-danger">
+                    {% for error in form.prix.vars.errors %}
+                        <p>{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.category) }}
+            {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+            {% if form.category.vars.errors|length > 0 %}
+                <div class="text-danger">
+                    {% for error in form.category.vars.errors %}
+                        <p>{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.image) }}
+            {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+            {% if form.image.vars.errors|length > 0 %}
+                <div class="text-danger">
+                    {% for error in form.image.vars.errors %}
+                        <p>{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-success">Ajouter produit</button>
         {{ form_end(form) }}
+    </div>
+</div>
+
+
+
+ 
+            
 
         
 

@@ -5,11 +5,16 @@ namespace App\Controller;
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class ProduitController extends AbstractController
 {
@@ -43,11 +48,41 @@ class ProduitController extends AbstractController
         //Récupération des donnés via le formulaire
         //Injection de Request from httpFoundation 
 
+
+
+
+
+
         $form->handleRequest($request);
 
 
         if ($form->isSubmitted()  && $form->isValid()) {
+           /////////////////////////////// //image ////////////////////////////
+            $imageFile = $form->get('image')->getData();
+             if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '.' . $imageFile->guessExtension();
+    
+                try {
+                    $imageFile->move(
+                        $this->getParameter('upload_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
+                    return $this->redirectToRoute('app_produit');
+                }
+    
+                $produit->setImage($newFilename);
+            }  
+            
+            /////////////////////////////////////
             //Injection de l entity manager Interface
+            
+
+            $currentdatetime = new DateTimeImmutable('now'); 
+
+            $produit->setCreatedat($currentdatetime);
 
             $em->persist($produit); // Requéte pour Ajouter un entité a la DB
             $em->flush(); // Exécution de req 
@@ -62,6 +97,7 @@ class ProduitController extends AbstractController
         ]);
     }
 
+        
 
 
  #[Route('/produit/edit/{id}', name: 'app_produit_edit')]

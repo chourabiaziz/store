@@ -25,6 +25,7 @@ class Category
      * @var Collection<int, Produit>
      */
     #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'category')]
+    #[ORM\JoinColumn(nullable:false)]
     private Collection $produits;
 
     public function __construct()
@@ -90,4 +91,17 @@ class Category
 
         return $this;
     }
+
+
+
+
+    public function __toString()
+    {
+        return $this->titre ;
+    }
+
+
+
+
+
 }

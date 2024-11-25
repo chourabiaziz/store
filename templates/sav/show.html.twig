@@ -1,0 +1,45 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Sav{% endblock %}
+
+{% block body %}
+    <h1>Sav</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sav.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ sav.nom }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>
+                
+                {% if sav.etat %}
+                    <p style="color: green;" >OK</p>
+                {% else if sav.etat == null %}
+                <p style="color: orange;" >En attente</p>
+                {% else %}
+                <p style="color: rgb(128, 0, 0);" >Refused</p>
+
+                {% endif %}
+                
+                
+                
+                
+                
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_sav_index') }}">back to list</a>
+
+    <a href="{{ path('app_sav_edit', {'id': sav.id}) }}">edit</a>
+
+    {{ include('sav/_delete_form.html.twig') }}
+{% endblock %}

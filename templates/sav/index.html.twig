@@ -1,0 +1,55 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Sav index{% endblock %}
+
+{% block body %}
+    <h1>Sav index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sav in savs %}
+            <tr>
+                <td>{{ sav.id }}</td>
+                <td>{{ sav.nom }}</td>
+                <td>
+                
+                    {% if sav.etat %}
+                    <p style="color: green;" >OK</p>
+
+ 
+                 {% elseif ( sav.etat)is null  %}
+                <p style="color: orange;" >En attente</p>
+                {% else %}
+                <p style="color: rgb(128, 0, 0);" >Refused</p>
+
+                {% endif %}
+                
+                </td>
+                <td>
+                    <a class="btn btn-secondary  p-2 m-2" href="{{ path('app_sav_show', {'id': sav.id}) }}">show</a>
+                    <a class="btn btn-secondary  p-2 m-2" href="{{ path('app_sav_edit', {'id': sav.id}) }}">edit</a>
+                    <a class="btn btn-success p-2 m-2" href="sav/accepter/{{sav.id}}">Accepter</a>
+                    <a class="btn btn-warning p-2 m-2" href="sav/enattente/{{sav.id}}">en attente</a>
+                    <a class="btn btn-danger p-2 m-2" href="sav/refuser/{{sav.id}}">refuser</a>
+                    
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_sav_new') }}">Create new</a>
+{% endblock %}

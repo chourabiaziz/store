@@ -14,6 +14,8 @@
 
        <ul>
 
+
+
                     <li>id :{{produit.id}}</li>
                     <li>titre : {{produit.titre}}</li>
                     <li>prix :{{produit.prix}}</li>
@@ -21,6 +23,13 @@
                      <li> <a href="/produit/edit/{{produit.id}}" class="btn btn-warning">Modifier</a> </li>
                      <li> <a href="/produit/delete/{{produit.id}}"    class="btn btn-danger" >Supprimer</a> </li>
             
+
+
+
+
+
+                     <img src="{{asset('produits/'~ produit.image )}}" alt="">
+
         </ul>    
      
 

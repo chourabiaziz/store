@@ -1,0 +1,13 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Edit Sav{% endblock %}
+
+{% block body %}
+    <h1>Edit Sav</h1>
+
+    {{ include('sav/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_sav_index') }}">back to list</a>
+
+    {{ include('sav/_delete_form.html.twig') }}
+{% endblock %}
